@@ -16,7 +16,7 @@
 /* General */
 body{
     font-family: var(--text-font);
-    background-color: #c2c2c2;
+    /* background-color: #c2c2c2; */
 }
 main{
     width: 98%;
