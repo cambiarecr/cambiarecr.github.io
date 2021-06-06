@@ -25,7 +25,7 @@ function displayAll(list){
         data += '<div class="card_product">';
         data += '<img src="https://drive.google.com/uc?id='+element.imagenPortadaUrl+'" alt="">';
         data += '<h4>'+element.nombre+'</h4>';
-        data += '<h4>'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</h4></div>';
+        data += '<h5>'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</h5></div>';
         
     });
     data += '</div>';
