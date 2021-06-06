@@ -18,7 +18,7 @@ body{
     font-family: var(--text-font);
 }
 main{
-    width: 90%;
+    width: 98%;
     margin: 60px auto 0 auto;
 }
 
@@ -78,11 +78,12 @@ h1 svg path:first-child{
 .catalogo_list{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-around;
+    gap: 5px;
 }
 .card_product{
-    border: 1px solid #000;
+    max-width: 50%;
+    text-align: center;
 }
 .card_product img{
     width: 100%;
