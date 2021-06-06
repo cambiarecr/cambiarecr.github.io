@@ -92,7 +92,7 @@ h1 svg path:first-child{
     height: auto;
 }
 .card_product h4{
-    font-weight: bolder;
+    font-weight: lighter;
 }
 /* Media Queries*/
 @media (min-width: 900px) {
