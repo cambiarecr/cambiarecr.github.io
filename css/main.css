@@ -91,9 +91,13 @@ h1 svg path:first-child{
     width: 100%;
     height: auto;
 }
-.card_product h4{
-    font-weight: lighter;
+.card_product .card_name{
+    font-weight: normal;
 }
+.card_product .card_price{
+    font-weight: bold;
+}
+
 /* Media Queries*/
 @media (min-width: 900px) {
     .nav-toggle {
