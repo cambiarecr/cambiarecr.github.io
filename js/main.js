@@ -4,10 +4,11 @@ const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
 request.send();
+var catalogoList;
 
 request.onload = function() {
     var response = request.response;
-    var catalogoList = response;
+    catalogoList = response;
     console.log(catalogoList);
     displayAll(catalogoList);
 }
@@ -21,7 +22,7 @@ function navToggle(){
 function displayAll(list){
     data = '<div class="catalogo_list">';
     list.forEach(element => {
-        data += '<div class="card_product" id="'+element.sku+'" data-type="'+element.tipo+'">';
+        data += '<div class="card_product" id="'+element.sku+'" data-type="'+element.tipo+'" onCLick="openModal(this)">';
         data += '<img src="https://drive.google.com/uc?id='+element.imagenPortadaUrl+'" alt="" loading="lazy">';
         data += '<p class="card_name">'+element.nombre+'</p>';
         data += '<p class="card_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</p></div>';
@@ -49,6 +50,29 @@ function filter(e){
     });
 }
 
-
-
+function openModal(e){
+    var sku = e.id;
+    var data = '';
+    console.log(sku);
+    [].forEach.call(catalogoList,function(producto){
+        if (producto.sku == sku){
+            data += '<div class="splide"><div class="splide__track"><ul class="splide__list">';
+            [].forEach.call(producto.galeriaImagenes, function(imagen){
+                data += '<li class="splide__slide"><img src="https://drive.google.com/uc?id='+imagen.imagenUrl+'" alt="" loading="lazy"></li>';
+            });
+            data += '</ul></div></div>';
+        }else{
+        }
+    });
+    console.log(data);
+    document.querySelector('.modal_body').innerHTML = data;
+    var elms = document.getElementsByClassName( 'splide' );
+    for ( var i = 0, len = elms.length; i < len; i++ ) {
+        new Splide( elms[ i ] ).mount();
+    }
+    var modal = document.querySelector('.product_modal');
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
+}
 // https://drive.google.com/uc?id=

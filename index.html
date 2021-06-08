@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catágolo Cambiáre</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/splide-default.min.css">
 </head>
 <body>
     <header>
@@ -29,20 +30,15 @@
        </g>
        </svg></h1>
         <nav class="nav">    
-            <a class="nav-item" href="">Inicio</a>
-            <a class="nav-item" href="">Destacados</a>
-            <a class="nav-item" href="">Catalogo</a>
-            <a class="nav-item" href="">Contacto</a>
+            <a class="nav_item" href="">Inicio</a>
+            <a class="nav_item" href="">Destacados</a>
+            <a class="nav_item" href="">Catalogo</a>
+            <a class="nav_item" href="">Contacto</a>
         </nav>
-        <a href="#" class="nav-toggle" onclick="navToggle()"><svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m464.883 64.267h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z"/><path d="m464.883 208.867h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z"/><path d="m464.883 353.467h-417.766c-25.98 0-47.117 21.137-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.012-21.137-47.149-47.117-47.149z"/></svg></a>
+        <button class="nav_toggle" onclick="navToggle()"><svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m464.883 64.267h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z"/><path d="m464.883 208.867h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z"/><path d="m464.883 353.467h-417.766c-25.98 0-47.117 21.137-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.012-21.137-47.149-47.117-47.149z"/></svg></button>
     </header>
     <main id="main">
-        <div class="filter-list a">
-            <!-- <li><a data="bufanda" href="">Bufandas</a></li>
-            <li><a data="cuellera" href="">Cuelleras</a></li>
-            <li><a href="">Ponchos</a></li>
-            <li><a href="">Ponchos</a></li>
-            <li><a href="">Ponchos</a></li> -->
+        <div class="filter_list">
             <a class="tab current" name="bufanda" onclick="filter(this)">Bufanda</a>
             <a class="tab" name="cuellera" onclick="filter(this)" >Cuellera</a>
             <a class="tab" name="poncho" onclick="filter(this)">Poncho</a>
@@ -50,6 +46,27 @@
         <div id="all_list">
         </div>
     </main>
+    <div class="product_modal">
+        <div class="header_modal">
+            <a href="" class="close_modal">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><g>
+                <path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+                       c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+                       L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+                       c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+                       c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+                       C492,219.198,479.172,207.418,464.344,207.418z"/></g>
+                </svg>
+            </a>
+        </div>
+        <div class="modal_body">
+
+        </div>
+    </div>
 </body>
+<script src="js/splide.min.js"></script>
 <script src="js/main.js"></script>
+
+
 </html>
