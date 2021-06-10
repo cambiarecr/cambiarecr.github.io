@@ -7,10 +7,14 @@ request.send();
 var catalogoList;
 
 request.onload = function() {
-    var response = request.response;
-    catalogoList = response;
-    console.log(catalogoList);
-    displayAll(catalogoList);
+    var current_path = window.location.pathname;
+    if (current_path == '/'){
+        var response = request.response;
+        catalogoList = response;
+        console.log(catalogoList);
+        
+        displayAll(catalogoList);
+    }
 }
 
 var nav = document.querySelector('nav');
@@ -21,8 +25,8 @@ function navToggle(){
 
 function displayAll(list){
     data = '<div class="catalogo_list">';
-    list.forEach(element => {
-        data += '<div class="card_product" id="'+element.sku+'" data-type="'+element.tipo+'" onCLick="openModal(this)">';
+    [].forEach.call(list,function(element){
+        data += '<div class="card_product show_filter" id="'+element.sku+'" data-type="'+element.tipo+'" onCLick="openModal(this)">';
         data += '<img src="https://drive.google.com/uc?id='+element.imagenPortadaUrl+'" alt="" loading="lazy">';
         data += '<p class="card_name">'+element.nombre+'</p>';
         data += '<p class="card_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</p></div>';
@@ -30,7 +34,7 @@ function displayAll(list){
     });
     data += '</div>';
     document.getElementById('all_list').innerHTML = data;
-}   
+}
 
 var list = document.getElementsByClassName('card_product');
 var tabs = document.getElementsByClassName('tab');
@@ -47,6 +51,9 @@ function filter(e){
         }else{
             el.classList.remove('show_filter');
         }
+        if(tipo == 'all'){
+            el.classList.add('show_filter');
+        }
     });
 }
 
@@ -54,7 +61,6 @@ function openModal(e){
     var sku = e.id;
     var data = '';
     var data_slide = '';
-    console.log(sku);
     [].forEach.call(catalogoList,function(producto){
         if (producto.sku == sku){
             data_slide += '<div class="splide"><div class="splide__track"><ul class="splide__list">';
@@ -65,8 +71,7 @@ function openModal(e){
             
             data += '<p class="modal_name">'+producto.nombre+'<p>';
             data += '<p class="modal_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(producto.precio)+'<p>';
-            console.log(data_slide);
-            console.log(data);
+            data += '<p class="modal_descrip">'+producto.descripcion+'<p>'
         }
     });
     document.querySelector('.modal_slide').innerHTML = data_slide;
