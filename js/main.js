@@ -1,19 +1,33 @@
-const requestURL = 'https://catalogo-cambiare-app.herokuapp.com/productos';
-const request = new XMLHttpRequest();
+var requestURLproductos = 'https://catalogo-cambiare-app.herokuapp.com/productos';
+var requestURLtipos = 'https://catalogo-cambiare-app.herokuapp.com/tipos';
+const prefixDrive = 'https://drive.google.com/uc?export=view&id=';
 
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-var catalogoList;
+const requestproductos = new XMLHttpRequest();
+const requesttipos = new XMLHttpRequest();
 
-request.onload = function() {
+requestproductos.open('GET', requestURLproductos);
+requestproductos.responseType = 'json';
+requestproductos.send();
+
+requesttipos.open('GET', requestURLtipos);
+requesttipos.responseType = 'json';
+requesttipos.send();
+
+requestproductos.onload = function() {
     var current_path = window.location.pathname;
     if (current_path == '/'){
-        var response = request.response;
+        var response = requestproductos.response;
         catalogoList = response;
-        console.log(catalogoList);
-        
         displayAll(catalogoList);
+    }
+}
+
+requesttipos.onload = function() {
+    var current_path = window.location.pathname;
+    if (current_path == '/'){
+        var response = requesttipos.response;
+        tiposList = response;
+        displayFiltersTabs(tiposList)
     }
 }
 
@@ -26,14 +40,21 @@ function navToggle(){
 function displayAll(list){
     data = '<div class="catalogo_list">';
     [].forEach.call(list,function(element){
-        data += '<div class="card_product show_filter" id="'+element.sku+'" data-type="'+element.tipo+'" onCLick="openModal(this)">';
-        data += '<img src="https://drive.google.com/uc?id='+element.imagenPortadaUrl+'" alt="" loading="lazy">';
+        data += '<div class="card_product show_filter" id="'+element.sku+'" data-type="'+element.tipo.tipo.toLowerCase()+'" onCLick="openModal(this)">';
+        data += '<img src="'+prefixDrive+element.imagenPortadaUrl+'" alt="" loading="lazy">';
         data += '<p class="card_name">'+element.nombre+'</p>';
         data += '<p class="card_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</p></div>';
-        
     });
     data += '</div>';
     document.getElementById('all_list').innerHTML = data;
+}
+
+function displayFiltersTabs(list){
+    data = '<a class="tab current" name="all" onclick="filter(this)">Todos</a>';
+    [].forEach.call(list, function(element){
+        data += '<a class="tab" name="'+element.tipo.toLowerCase()+'" onclick="filter(this)">'+element.tipo+'</a>';
+    });
+    document.querySelector('.filter_list').innerHTML = data;
 }
 
 var list = document.getElementsByClassName('card_product');
@@ -65,11 +86,10 @@ function openModal(e){
         if (producto.sku == sku){
             data_slide += '<div class="splide"><div class="splide__track"><ul class="splide__list">';
             [].forEach.call(producto.galeriaImagenes, function(imagen){
-                data_slide += '<li class="splide__slide"><img src="https://drive.google.com/uc?id='+imagen.imagenUrl+'" alt="" loading="lazy"></li>';
+                data_slide += '<li class="splide__slide"><img src="'+prefixDrive+imagen.imagenUrl+'" alt="" loading="lazy"></li>';
             });
             data_slide += '</ul></div></div>';
-            
-            data += '<p class="modal_name">'+producto.nombre+'<p>';
+            data += '<h2 class="modal_name">'+producto.nombre+'</h2>';
             data += '<p class="modal_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(producto.precio)+'<p>';
             data += '<p class="modal_descrip">'+producto.descripcion+'<p>'
         }
@@ -88,5 +108,3 @@ function closeModal(){
     var modal = document.querySelector('.product_modal');
     modal.classList.toggle('show_modal');
 }
-
-// https://drive.google.com/uc?id=

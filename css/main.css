@@ -172,6 +172,7 @@ section{
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+    overflow: scroll;
 }
 .show_modal{
     opacity: 1;
@@ -212,7 +213,8 @@ section{
     margin-top: 5px;
 }
 .modal_name{
-    font-weight: normal;
+    color: var(--primary-color);
+    font-family: var(--title-font);
 }
 .modal_price{
     font-weight: bold;
