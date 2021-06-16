@@ -42,7 +42,7 @@ function displayAll(list){
     [].forEach.call(list,function(element){
         data += '<div class="card_product show_filter" id="'+element.sku+'" data-type="'+element.tipo.tipo.toLowerCase()+'" onCLick="openModal(this)">';
         data += '<img src="'+prefixDrive+element.imagenPortadaUrl+'" alt="" loading="lazy">';
-        data += '<p class="card_name">'+element.nombre+'</p>';
+        data += '<h4 class="card_name">'+element.nombre+'</h4>';
         data += '<p class="card_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</p></div>';
     });
     data += '</div>';
