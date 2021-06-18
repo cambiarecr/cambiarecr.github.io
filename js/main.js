@@ -38,15 +38,14 @@ function navToggle(){
 }
 
 function displayAll(list){
-    data = '<div class="catalogo_list">';
+    var data = '';
     [].forEach.call(list,function(element){
         data += '<div class="card_product show_filter" id="'+element.sku+'" data-type="'+element.tipo.tipo.toLowerCase()+'" onCLick="openModal(this)">';
         data += '<img src="'+prefixDrive+element.imagenPortadaUrl+'" alt="" loading="lazy">';
         data += '<h4 class="card_name">'+element.nombre+'</h4>';
         data += '<p class="card_price">'+Intl.NumberFormat("es-CR", {style: "currency", currency: "CRC"}).format(element.precio)+'</p></div>';
     });
-    data += '</div>';
-    document.getElementById('all_list').innerHTML = data;
+    document.querySelector('.catalogo_list').innerHTML = data;
 }
 
 function displayFiltersTabs(list){
@@ -57,16 +56,16 @@ function displayFiltersTabs(list){
     document.querySelector('.filter_list').innerHTML = data;
 }
 
-var list = document.getElementsByClassName('card_product');
+var listProducts = document.getElementsByClassName('card_product');
 var tabs = document.getElementsByClassName('tab');
 
 function filter(e){
-    [].forEach.call(tabs,function(el){
-        el.classList.remove('current');
+    [].forEach.call(tabs,function(tab){
+        tab.classList.remove('current');
     });
     e.classList.add('current');
     var tipo = e.name;
-    [].forEach.call(list,function(el){
+    [].forEach.call(listProducts,function(el){
         if(el.getAttribute('data-type') == tipo){
             el.classList.add('show_filter');
         }else{

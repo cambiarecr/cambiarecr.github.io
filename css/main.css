@@ -114,14 +114,14 @@ header{
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     list-style: none;
     margin: 10px auto;
 }
 .tab{
     width: 20%;
     text-align: center;
-    border: #c2c2c2 1px solid;
+    border: var(--primary-color) 1px solid;
     padding: 5px;
 }
 .current{
@@ -135,7 +135,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .card_product{
     display: none;
@@ -149,6 +149,7 @@ header{
 }
 .card_product .card_name{
     font-weight: normal;
+    font-size: 0.9rem;
 }
 .card_product .card_price{
     font-weight: bold;
@@ -158,9 +159,6 @@ header{
 }
 
 /* Modal Product */
-section{
-    max-width: 95%;
-}
 .product_modal{
     position: fixed;
     background-color: #fff;
@@ -252,9 +250,73 @@ section{
     fill: var(--secondary-color);
 }
 
-/* Media Queries*/
-@media (min-width: 900px) {
+/* Media Queries Table*/
+@media (min-width: 430px) {
+    main, section{
+        width: 90%;
+        margin: 80px auto 0 auto;
+    }
+    .nav{
+        display: flex;
+        background-color: transparent;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+        height: 60px;
+        top: 0;
+        position: relative;
+        margin-right: 20px;
+    }
     .nav_toggle {
       display: none;
+    }
+    .nav_item{
+        padding: 0 15px;
+        color: #000;
+    }
+    .social{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .nav_item:hover{
+        color: var(--primary-color);
+    }
+    .social .social_item svg path{
+        fill: #000;
+    }
+    .social .social_item:hover svg path{
+        fill: var(--primary-color);
+    }
+    .card_product{
+        max-width: 30%;
+    }
+    .modal_body{
+        display: flex;
+        flex-direction: row;
+        max-width: 95%;
+        margin: 10px auto;
+    }
+    .modal_slide{
+        width: 50%;
+    }
+    .modal_content{
+        width: 50%;
+        margin: 0 10px;
+    }
+}
+
+/* Media Queries Desktop*/
+@media (min-width: 770px) {
+    main, section{
+        width: 80%;
+        margin: 80px auto 0 auto;
+    }
+    .tab{
+        width: 10%;
+    }
+    .card_product{
+        max-width: 20%;
     }
 }
